@@ -12,6 +12,6 @@
   3) Edit the run.py file to list to the directory where your dependencies and program files are installed
 
 ## Running the Script
-'''
+```
 <YOUR DIRECTORY WHERE ALL THE NECESSARY FILES ARE> python3 run.py
-'''
+```
