@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+
 # -*- coding: utf-8 -*-
 """
 Created on Fri Feb 11 00:17:13 2022
@@ -8,22 +8,19 @@ Created on Fri Feb 11 00:17:13 2022
 import os
 from Bio import SeqIO
 from Bio.Seq import Seq
-from python_on_whales import docker
+from glob import glob
 
-maindir = '/Users/jgrandinetti/Desktop/MiniProject/' #CHANGE THIS TO YOUR DIRECTORY
+maindir = '/home/jgrandi7/Desktop/MiniProject/' #CHANGE THIS TO YOUR DIRECTORY
 
-sratoolkit_path = maindir + 'sratoolkit.3.0.0-mac64/bin/'
-sratoolkit_userrepo_path = maindir + 'user-repository'
-SPAdes_path = maindir + 'SPAdes-3.15.4-Darwin/bin/spades.py'
+sratoolkit_path = maindir + 'sratoolkit.2.11.2-ubuntu64/bin/' 
+sratoolkit_userrepo_path = maindir + 'my_repository'
+SPAdes_path = maindir + 'SPAdes-3.15.4-Linux/bin/spades.py'
 prokka_path = maindir + 'prokka/bin/'
+#WARNING - these paths may change depending on which system and version of the dependencies you are running
+#modify the above paths as needed
 
-alternate_prokka = docker.run('staphb/prokka:latest')
-
-results = maindir + 'results'
-#createresults = 'mkdir ' + results
-#os.system(createresults)
-
-
+results = maindir + 'results' #do not touch this
+os.system('mkdir ' + results)
 
 def mp_retrieve():
     sratoolkit_command1 = sratoolkit_path + 'prefetch SRR8185310' + ' -O ' + results
@@ -36,7 +33,7 @@ def mp_retrieve():
 def spadesexe(output):
 
     spadescommand = SPAdes_path + ' -k 55,77,99,127 -s ' + results + '/SRR8185310.fastq -o ' + results
-    output.write(spadescommand)
+    output.write('\n'+spadescommand)
     os.system(spadescommand)
     
 def numcontigs(output):
@@ -64,7 +61,7 @@ def numcontigs(output):
     for seq in greaterthan1000.values():
         numbp += len(seq)
             
-    output.write('There are ' + str(len(greaterthan1000)) + ' contigs > 1000 in the assembly.')
+    output.write('\nThere are ' + str(len(greaterthan1000)) + ' contigs > 1000 in the assembly.')
     
     output.write('\nThere are ' + str(numbp) + ' bp in the assembly.')
     
@@ -75,19 +72,30 @@ def numcontigs(output):
             
 
 def prokka(output):
-    prokkainit = docker.pull('staphb/prokka:latest')
-    prokkacommand = docker.run('staphb/prokka:latest prokka --outdir ' + results + ' --genus Escherichia --locustag ECOL ' + results +'/contigs1000.fasta')
-    output.write('\n' + prokkacommand)
-    os.system(prokkainit)
+    prokkacommand = prokka_path +'prokka --outdir ' + results + '/prokka --genus Escherichia --locustag ECOL ' + results +'/contigs1000.fasta'
+    output.write('\n' + prokkacommand +'\n')
     os.system(prokkacommand)
+    filename = glob(results + ('/prokka/PROKKA_********.txt'))[0]
+    prokkadata = []
+    with open(filename,'r') as anno:
+        for line in anno:
+            output.write(line)
+            prokkadata.append(line)
+    return prokkadata
     
+def prokkacomp(output, prokkadata):
+    CDS = int(prokkadata[3].strip('CDS: '))
+    tRNA = int(prokkadata[5].strip('tRNA: '))
+    statement = 'Prokka found ' + str(CDS - 4140) + ' additional CDS and ' + str(89 - tRNA) + ' less tRNA than the RefSeq.'
+    outfile.write(statement)
     
-    
-with open('miniproject.log', 'w') as outfile:
-    #mp_retrieve()
-    #spadesexe(outfile)
+with open(results + '/miniproject.log', 'w') as outfile:
+    mp_retrieve()
+    spadesexe(outfile)
     numcontigs(outfile)
-    prokka(outfile)
+    prokkadata = prokka(outfile)
+    prokkacomp(outfile,prokkadata)
+    print('Success! Thanks for using COMP-383-Mini-Project by jgrandi7')
     outfile.close()
     
     
