@@ -13,5 +13,5 @@
 
 ## Running the Script
 ```
-<YOUR DIRECTORY WHERE ALL THE NECESSARY FILES ARE> python3 run.py
+python3 <YOUR DIRECTORY WHERE ALL THE NECESSARY FILES ARE>/run.py
 ```
