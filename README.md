@@ -1,10 +1,11 @@
 # COMP-383-Mini-Project
 
-## Dependencies (must be installed (and optionally set to PATH environment variable) before this software can be used!)
+## Dependencies (must be installed before this software can be used!)
   1) sra-tools (found here: https://github.com/ncbi/sra-tools.git)
-        - when selecting a user repository folder, create and point to a folder labeled "my_repository" in the your main directory
-  3) SPAdes (found here: https://github.com/ablab/spades.git)
-  4) prokka (found here: https://github.com/tseemann/prokka.git)
+        - when selecting a user repository folder during the sra-tools install, create and point to a folder labeled "my_repository"
+        - this folder must be in the same folder as the parent directory that contains the dependencies
+  2) SPAdes (found here: https://github.com/ablab/spades.git)
+  3) prokka (found here: https://github.com/tseemann/prokka.git)
 
 ## Installation
   1) Download dependencies and install to either home directory or an easy to access folder on your computer
