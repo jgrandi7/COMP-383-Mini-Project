@@ -2,8 +2,6 @@
 
 ## Dependencies (must be installed before this software can be used!)
   1) sra-tools (found here: https://github.com/ncbi/sra-tools.git)
-        - when selecting a user repository folder during the sra-tools install, create and point to a folder labeled "my_repository"
-        - this folder must be in the same folder as the parent directory that contains the dependencies
   2) SPAdes (found here: https://github.com/ablab/spades.git)
   3) prokka (found here: https://github.com/tseemann/prokka.git)
 
