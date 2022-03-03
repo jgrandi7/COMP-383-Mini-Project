@@ -26,7 +26,7 @@ os.system('mkdir ' + results)
 
 def mp_retrieve():
     sratoolkit_command1 = sratoolkit_path + 'prefetch SRR8185310' + ' -O ' + results #prefetch command 
-    sratoolkit_command2 = sratoolkit_path + 'fastq-dump SRR8185310' + ' -O ' + results #fastq-dump command
+    sratoolkit_command2 = sratoolkit_path + 'fasterq-dump ' + results +'/SRR8185310/SRR8185310.sra' + ' -O ' + results #fasterq-dump command
     
     os.system(sratoolkit_command1)
     os.system(sratoolkit_command2)
