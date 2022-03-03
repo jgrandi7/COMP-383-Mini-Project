@@ -16,7 +16,6 @@ from glob import glob
 maindir = '/home/jgrandi7/Desktop/MiniProject/' #CHANGE THIS TO YOUR DIRECTORY
 
 sratoolkit_path = maindir + 'sratoolkit.2.11.2-ubuntu64/bin/' 
-sratoolkit_userrepo_path = maindir + 'my_repository'
 SPAdes_path = maindir + 'SPAdes-3.15.4-Linux/bin/spades.py'
 prokka_path = maindir + 'prokka/bin/'
 #WARNING - these paths may change depending on which system and version of the dependencies you are running
