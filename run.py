@@ -34,7 +34,7 @@ def mp_retrieve():
 
 def spadesexe(output):
 
-    spadescommand = SPAdes_path + ' -k 55,77,99,127 -s ' + results + '/SRR8185310.fastq -o ' + results #spades command
+    spadescommand = SPAdes_path + ' -k 55,77,99,127 -s ' + results + '/SRR8185310.fastq --only-assembler -o ' + results #spades command
     output.write('\n'+spadescommand) #spades command written to log file
     os.system(spadescommand)
     
