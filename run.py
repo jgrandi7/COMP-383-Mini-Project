@@ -58,7 +58,7 @@ def numcontigs(output):
             
     for seq in seqdict.values(): #for sequences in dictionary
         if len(seq) > 1000: #if sequence is greater than 1000 bp
-            greaterthan1000[get_key(seq)] = seq #get
+            greaterthan1000[get_key(seq)] = seq #set key and value in empty dictionary
             
     for seq in greaterthan1000.values(): #for every contig/sequence that is greater than 1000 bp
         numbp += len(seq) #add bp of that sequence to numbp
