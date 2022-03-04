@@ -13,6 +13,15 @@ from Bio import SeqIO
 from Bio.Seq import Seq
 from glob import glob
 
+'''
+sorry, this is a last minute addition made 3:58 pm before project is due at 4:15. I am not sure what the test data entails per the rubric.
+The goal of the program is to complete all of the steps listed for the EColi genome which it does.
+If by test data, the rubric means example user input, the program has example path names which are included below, 
+and are the only things the user needs to change for the program to run succesfully on their machine.
+
+-slightly stressed Jacob
+'''
+
 maindir = '/home/jgrandi7/Desktop/MiniProject/' #CHANGE THIS TO YOUR DIRECTORY
 
 sratoolkit_path = maindir + 'sratoolkit.2.11.2-ubuntu64/bin/' 
